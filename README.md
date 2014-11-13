@@ -12,7 +12,7 @@ sudo yum -y install adore-t2
 cd
 git clone git@github.com:Terradue/dcs-doris-coseismic.git
 
-cd adore
+cd dcs-doris-coseismic
 mvn install
 ```
 
