@@ -3,9 +3,7 @@
   <jobTemplates>
     <jobTemplate id="adore">
       <streamingExecutable>/application/adore/run.sh</streamingExecutable>
-      <defaultParameters>
-      	<parameter id="adore_catalogue">http://catalogue.terradue.int/catalogue/search/ASA_IM__0P/description</parameter>
-      </defaultParameters>
+      <defaultParameters/>
       <defaultJobconf>
 	<property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
@@ -16,6 +14,7 @@
     <node id="node_adore">
       <job id="adore" />
       <sources>
+        <source scope="runtime" id="adore_project" title="Project Name" abstract="ADORE Project Name (e.g. LAquila)" refid="string:list"></source>
         <source scope="runtime" id="adore_master" title="ASAR master url" abstract="Define the master ASAR product to use with ADORE" refid="string:list"></source>
 	<source scope="runtime" id="adore_slave" title="ASAR slave url" abstract="Define the slave ASAR product to use with ADORE" refid="string:list"></source>
       </sources>
