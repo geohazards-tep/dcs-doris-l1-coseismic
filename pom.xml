@@ -114,10 +114,12 @@
 							</sources>
 						</mapping>
 					</mappings>
-
 					<provides>
 						<provide>${project.artifactId}</provide>
 					</provides>
+					<requires>
+						<require>adore-t2</require>
+					</requires>
 					<needarch>true</needarch>
 				</configuration>
 			</plugin>
@@ -132,8 +134,7 @@
 						<phase>install</phase>
 						<configuration>
 							<target>
-								<chmod dir="/application" includes="**/bin/*, **/run*"
-									perm="755" />
+								<chmod dir="/application" includes="**/bin/*, **/run*" perm="755" />
 							</target>
 						</configuration>
 						<goals>
