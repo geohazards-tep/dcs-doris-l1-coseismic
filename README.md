@@ -7,6 +7,7 @@ To run this application, you will need a Developer Cloud Sandbox that can be req
 Log on the developer sandbox and run these commands in a shell:
 
 ```bash
+sudo yum -y downgrade geos-3.3.2
 sudo yum -y install adore-t2
 
 cd
