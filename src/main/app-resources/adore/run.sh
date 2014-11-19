@@ -30,16 +30,15 @@ trap cleanExit EXIT
 
 # path and master/slave variable definition
 UUID=`uuidgen`
-UUIDTMP="${TMPDIR}/`uuidgen`"
+UUIDTMP="/tmp/${UUID}"
 MASTER="`ciop-getparam adore_master`"
 PROJECT="`ciop-getparam adore_project`"
-SHORTPATH=/tmp/${UUID}
 
 # creates the adore directory structure
 ciop-log "INFO" "creating the directory structure"
+
 mkdir -p ${UUIDTMP}
 # this is needed for the getorb (a too long path makes the binary segfail)
-ln -s ${UUIDTMP} ${SHORTPATH}
 mkdir ${UUIDTMP}/data
 mkdir ${UUIDTMP}/data/master
 mkdir ${UUIDTMP}/data/slave
@@ -69,6 +68,7 @@ fi
 
 res=$?
 
+#retrieving the slave(s)
 while read input
 do
 	if [ ! -e "/var/lib/hadoop-0.20/`basename ${input}`" ]
@@ -88,14 +88,14 @@ done
 if [ $res -ne 0 ]; then exit $ERR_CURL; fi
 
 # setting the adore settings.set file
-cat /application/adore/files/settings.set.template | sed "s|#BASEDIR#|${SHORTPATH}|g" | sed "s|#PROJECT#|${PROJECT}|g" > ${UUIDTMP}/settings.set
+cat /application/adore/files/settings.set.template | sed "s|#BASEDIR#|${UUIDTMP}|g" | sed "s|#PROJECT#|${PROJECT}|g" > ${UUIDTMP}/settings.set
 
 # ready to lauch adore
 cd ${UUIDTMP}
 export ADORESCR=/opt/adore/scr; export PATH=${PATH}:${ADORESCR}:/usr/local/bin
-adore -u settings.set "m_readfiles; settings apply -r m_orbdir=${SHORTPATH}/ODR; m_porbits; s_readfiles; s_porbits; m_crop; s_crop; coarseorb; dem make SRTM3 50 LAquila; s raster_format; settings apply -r raster_format=png; raster a m_crop -- -M1/5; raster a s_crop -- -M1/5; m_simamp; m_timing; coarsecorr; fine; reltiming; demassist; coregpm; resample; interfero; comprefpha; subtrrefpha; comprefdem; subtrrefdem; coherence; raster p subtrrefdem -- -M4/4; raster p subtrrefpha -- -M4/4; raster p interfero -- -M4/4; raster p coherence -- -M4/4 -cgray -b"
+adore -u settings.set "m_readfiles; settings apply -r m_orbdir=${UUIDTMP}/ODR; m_porbits; s_readfiles; s_porbits; m_crop; s_crop; coarseorb; dem make SRTM3 50 LAquila; s raster_format; settings apply -r raster_format=png; raster a m_crop -- -M1/5; raster a s_crop -- -M1/5; m_simamp; m_timing; coarsecorr; fine; reltiming; demassist; coregpm; resample; interfero; comprefpha; subtrrefpha; comprefdem; subtrrefdem; coherence; raster p subtrrefdem -- -M4/4; raster p subtrrefpha -- -M4/4; raster p interfero -- -M4/4; raster p coherence -- -M4/4 -cgray -b"
 
-ciop-publish -m ${UUIDTMP}/*.png
+ciop-publish -m ${UUIDTMP}/*.*
 
 rm -rf ${UUIDTMP}
 
