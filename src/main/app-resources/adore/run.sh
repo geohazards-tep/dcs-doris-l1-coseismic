@@ -37,45 +37,34 @@ PROJECT="`ciop-getparam adore_project`"
 
 # creates the adore directory structure
 ciop-log "INFO" "creating the directory structure"
-
 mkdir -p ${UUIDTMP}
-# this is needed for the getorb (a too long path makes the binary segfail)
 mkdir ${UUIDTMP}/data
 mkdir ${UUIDTMP}/data/master
 mkdir ${UUIDTMP}/data/slave
 
-ciop-log "INFO" "basedir is ${UUIDTMP} ${SHORTPATH}"
+ciop-log "INFO" "basedir is ${UUIDTMP}"
 
 # copies the ODR files
 ciop-log "INFO" "copying the ODR files"
-#cd ${UUIDTMP}/
 tar -C ${UUIDTMP} -xvfz /application/adore/files/ODR.tgz
 
 # retrieves the files
 ciop-log "INFO" "retrieving master [$MASTER]"
 cd ${UUIDTMP}/data/
 
-# copies the master (with debug mode check for a local file)
-if [ ! -e "/var/lib/hadoop-0.20/`basename ${MASTER}`" ]
-then
-	ciop-log "INFO" "downloading master [${MASTER}]"
-	ciop-copy -O ${UUIDTMP}/data/master ${MASTER}
-else
-	ciop-log "INFO" "found debug file, copying from local then"
-	cd ${UUIDTMP}/data/master
-	unzip "/var/lib/hadoop-0.20/`basename ${MASTER}`"
-	cd -
-fi
-
+# copies the master
+ciop-log "INFO" "downloading master [${MASTER}]"
+ciop-copy -f -O ${UUIDTMP}/data/master ${MASTER}
 res=$?
 
 #retrieving the slave
-slave="`cat`"
+SLAVE="`cat`"
 
 # check cardinality
-[ "`echo "$slave" | wc -l`" != "1" ] && exit $ERR_CARDINALITY 
+[ "`echo "${SLAVE}" | wc -l`" != "1" ] && exit $ERR_CARDINALITY 
 
-ciop-copy -O ${UUIDTMP}/data/slave ${slave}
+ciop-log "INFO" "retrieving slave [${SLAVE}]"
+ciop-copy -f -O ${UUIDTMP}/data/slave ${SLAVE}
 
 # setting the adore settings.set file
 cat > ${UUIDTMP}/settings.set << EOF
@@ -84,6 +73,8 @@ runName="${PROJECT}"
 slave="slave"
 scenes_include=( master slave )
 dataFile="ASA_*.N1"
+m_in_dat="${UUIDTMP}/data/master/`basename ${MASTER}`"
+s_in_dat="${UUIDTMP}/data/slave/`basename ${SLAVE}`"
 m_in_method="ASAR"
 m_in_vol="dummy"
 m_in_lea="dummy"
