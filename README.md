@@ -5,11 +5,11 @@ To run this application, you will need a Developer Cloud Sandbox that can be req
 ### Installation
 
 #### using rpms
-Log on the developer sandbox. Download the rpm package from https://github.com/Terradue/dcs-doris-coseismic/releases . Install the package by running these commands in a shell:
+Log on the developer sandbox. Download the rpm package from https://github.com/Terradue/dcs-doris-l1-coseismic/releases . Install the package by running these commands in a shell:
 
 ```bash
 sudo yum -y downgrade geos-3.3.2
-sudo yum -y install dcs-doris-coseismic-<version>-ciop.x86_64.rpm
+sudo yum -y install dcs-doris-l1-coseismic-<version>-ciop.x86_64.rpm
 ```
 
 #### using maven
@@ -21,9 +21,9 @@ sudo yum -y downgrade geos-3.3.2
 sudo yum -y install adore-t2
 
 cd
-git clone git@github.com:Terradue/dcs-doris-coseismic.git
+git clone git@github.com:Terradue/dcs-doris-l1-coseismic.git
 
-cd dcs-doris-coseismic
+cd dcs-doris-l1-coseismic
 mvn install
 ```
 
