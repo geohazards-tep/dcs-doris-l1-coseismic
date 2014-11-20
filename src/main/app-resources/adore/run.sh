@@ -31,6 +31,7 @@ trap cleanExit EXIT
 # path and master/slave variable definition
 UUID=`uuidgen`
 UUIDTMP="/tmp/${UUID}"
+
 MASTER="`ciop-getparam adore_master`"
 PROJECT="`ciop-getparam adore_project`"
 
@@ -47,8 +48,8 @@ ciop-log "INFO" "basedir is ${UUIDTMP} ${SHORTPATH}"
 
 # copies the ODR files
 ciop-log "INFO" "copying the ODR files"
-cd ${UUIDTMP}/
-tar xvfz /application/adore/files/ODR.tgz
+#cd ${UUIDTMP}/
+tar -C ${UUIDTMP} -xvfz /application/adore/files/ODR.tgz
 
 # retrieves the files
 ciop-log "INFO" "retrieving master [$MASTER]"
@@ -68,27 +69,29 @@ fi
 
 res=$?
 
-#retrieving the slave(s)
-while read input
-do
-	if [ ! -e "/var/lib/hadoop-0.20/`basename ${input}`" ]
-	then
-		ciop-log "INFO" "downloading slave [${input}]"
-		ciop-copy -O ${UUIDTMP}/data/slave ${input}
-	else
-		ciop-log "INFO" "found debug file, copying from local then"
-		cd ${UUIDTMP}/data/slave
-		unzip "/var/lib/hadoop-0.20/`basename ${input}`"
-		cd -
-	fi
+#retrieving the slave
+slave="`cat`"
 
-	res=$(( $res + $? ))
-done
+# check cardinality
+[ "`echo "$slave" | wc -l`" != "1" ] && exit $ERR_CARDINALITY 
 
-if [ $res -ne 0 ]; then exit $ERR_CURL; fi
+ciop-copy -O ${UUIDTMP}/data/slave ${slave}
 
 # setting the adore settings.set file
-cat /application/adore/files/settings.set.template | sed "s|#BASEDIR#|${UUIDTMP}|g" | sed "s|#PROJECT#|${PROJECT}|g" > ${UUIDTMP}/settings.set
+cat > ${UUIDTMP}/settings.set << EOF
+projectFolder="${UUIDTMP}"
+runName="${PROJECT}"
+slave="slave"
+scenes_include=( master slave )
+dataFile="ASA_*.N1"
+m_in_method="ASAR"
+m_in_vol="dummy"
+m_in_lea="dummy"
+m_in_null="dummy"
+s_in_vol="dummy"
+s_in_lea="dummy"
+s_in_null="dummy"
+EOF 
 
 # ready to lauch adore
 cd ${UUIDTMP}
