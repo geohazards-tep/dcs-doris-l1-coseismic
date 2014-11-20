@@ -4,15 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.terradue.ciop.app</groupId>
-	<artifactId>dcs-doris-coseismic</artifactId>
+	<artifactId>dcs-doris-l1-coseismic</artifactId>
 	<packaging>rpm</packaging>
 	<description>Coseismic interferogram dcs application using ADORE DORIS</description>
 	<version>0.1</version>
 
 	<scm>
-		<connection>scm:git:git@github.com:Terradue/dcs-doris-coseismic.git</connection>
-		<developerConnection>scm:git:git@github.com:Terradue/dcs-doris-coseismic.git</developerConnection>
-		<url>https://github.com/Terradue/dcs-doris-coseismic</url>
+		<connection>scm:git:git@github.com:Terradue/dcs-doris-l1-coseismic.git</connection>
+		<developerConnection>scm:git:git@github.com:Terradue/dcs-doris-l1-coseismic.git</developerConnection>
+		<url>https://github.com/Terradue/dcs-doris-l1-coseismic</url>
 		<tag>HEAD</tag>
 	</scm>
 
