@@ -38,7 +38,7 @@ MASTER="`ciop-getparam adore_master`"
 PROJECT="`ciop-getparam adore_project`"
 
 # let's check if the correct product was provided
-[ "`basename ${MASTER} | cut -c 1-10`" != "ASA_IMS_1P" ] && exit $ERR_WRONGPROD
+#[ "`basename ${MASTER} | cut -c 1-10`" != "ASA_IMS_1P" ] && exit $ERR_WRONGPROD
 
 # creates the adore directory structure
 ciop-log "INFO" "creating the directory structure"
@@ -66,7 +66,7 @@ res=$?
 SLAVE="`cat`"
 
 # let's check if the correct product was provided
-[ "`basename ${MASTER} | cut -c 1-10`" != "ASA_IMS_1P" ] && exit $ERR_WRONGPROD
+#[ "`basename ${SLAVE} | cut -c 1-10`" != "ASA_IMS_1P" ] && exit $ERR_WRONGPROD
 
 # check cardinality
 [ "`echo "${SLAVE}" | wc -l`" != "1" ] && exit $ERR_CARDINALITY 
