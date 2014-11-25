@@ -21,7 +21,7 @@ sudo yum -y downgrade geos-3.3.2
 sudo yum -y install adore-t2
 
 cd
-git clone git@github.com:Terradue/dcs-doris-l1-coseismic.git
+git clone git@github.com:geohazards-tep/dcs-doris-l1-coseismic.git
 
 cd dcs-doris-l1-coseismic
 mvn install
