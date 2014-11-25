@@ -37,9 +37,6 @@ UUIDTMP="/tmp/${UUID}"
 MASTER="`ciop-getparam adore_master`"
 PROJECT="`ciop-getparam adore_project`"
 
-# let's check if the correct product was provided
-#[ "`basename ${MASTER} | cut -c 1-10`" != "ASA_IMS_1P" ] && exit $ERR_WRONGPROD
-
 # creates the adore directory structure
 ciop-log "INFO" "creating the directory structure"
 mkdir -p ${UUIDTMP}
