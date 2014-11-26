@@ -46,8 +46,10 @@ mkdir ${UUIDTMP}/data/master
 ciop-log "INFO" "basedir is ${UUIDTMP}"
 
 # copies the ODR files
-ciop-log "INFO" "copying the ODR files"
-tar xvfz /application/adore/files/ODR.tgz -C /tmp &> /dev/null
+[ ! -e /tmp/ODR ] && {
+	ciop-log "INFO" "copying the ODR files"
+	tar xvfz /application/adore/files/ODR.tgz -C /tmp &> /dev/null
+}
 
 # retrieves the files
 ciop-log "INFO" "retrieving master [$MASTER]"
@@ -106,13 +108,13 @@ EOF
 # ready to lauch adore
 cd ${UUIDTMP}
 export ADORESCR=/opt/adore/scr; export PATH=${PATH}:${ADORESCR}:/usr/local/bin
-adore -u settings.set "m_readfiles; s_readfiles; settings apply -r m_orbdir=/tmp/ODR; m_porbits; s_porbits; m_crop; s_crop; coarseorb; dem make SRTM3 50 LAquila; settings apply -r raster_format=png; raster a m_crop -- -M1/5; raster a s_crop -- -M1/5; m_simamp; m_timing; coarsecorr; fine; reltiming; demassist; coregpm; resample; interfero; comprefpha; subtrrefpha; comprefdem; subtrrefdem; coherence; raster p subtrrefdem -- -M4/4; raster p subtrrefpha -- -M4/4; raster p interfero -- -M4/4; raster p coherence -- -M4/4 -cgray -b" &> /dev/stdout
+adore -u settings.set "m_readfiles; s_readfiles; settings apply -r m_orbdir=/tmp/ODR; m_porbits; s_porbits; m_crop; s_crop; coarseorb; dem make SRTM3 50 LAquila; settings apply -r raster_format=png; raster a m_crop -- -M1/5; raster a s_crop -- -M1/5; m_simamp; m_timing; coarsecorr; fine; reltiming; demassist; coregpm; resample; interfero; comprefpha; subtrrefpha; comprefdem; subtrrefdem; coherence; raster p subtrrefdem -- -M4/4; raster p subtrrefpha -- -M4/4; raster p interfero -- -M4/4; raster p coherence -- -M4/4 -cgray -b; saveas gdal p interfero -of GTiff test.tiff" &> /dev/stdout
 
 # removes unneeded files
 cd ${UUIDTMP}
-rm -rf *.res *.hgt *.drs *.temp *.ps *.DEM
-ciop-publish -m ${UUIDTMP}/*.*
+#rm -rf *.res *.hgt *.drs *.temp *.ps *.DEM
+#ciop-publish -m ${UUIDTMP}/*.*
 
-rm -rf ${UUIDTMP}
+#rm -rf ${UUIDTMP}
 
 ciop-log "INFO" "That's all folks"
