@@ -6,9 +6,15 @@ Doris is a standalone program that can perform most common steps of the interfer
 
 ADORE stands for [Automated DORIS Environment](https://code.google.com/p/adore-doris/). It is development started at the University of Miami Geodesy Group, to help researchers generate interferograms with ease. Just like DORIS it is an open source project and it comes with the same license. ADORE tries to provide a streamlined user interface for generating interferograms with DORIS and has some additional features for displaying and exporting the results, and time series analysis. 
 
-## Table of Contents
+## Quick link
  
 * [Getting Started](#getting-started)
+* [Installation](#installation)
+* [Submitting the workflow](#submit)
+* [Community and Documentation](#community)
+* [Authors](#authors)
+* [Questions, bugs, and suggestions](#questions)
+* [License](#license)
 
 ### <a name="getting-started"></a>Getting Started 
 
@@ -18,7 +24,7 @@ A Developer Cloud Sandbox provides Earth Sciences data access services, and help
 The virtual machine runs in two different lifecycle modes: Sandbox mode and Cluster mode. 
 Used in Sandbox mode (single virtual machine), it supports cluster simulation and user assistance functions in building the distributed application.
 Used in Cluster mode (a set of master and slave nodes), it supports the deployment and execution of the application with the power of distributed computing for data processing over large datasets (leveraging the Hadoop Streaming MapReduce technology). 
-### Installation
+### <a name="installation"></a>Installation
 
 #### Pre-requisites
 
@@ -49,7 +55,7 @@ cd dcs-doris-l1-coseismic
 mvn install
 ```
 
-### Submitting the workflow
+### <a name="submit"></a>Submitting the workflow
 
 Run this command in a shell:
 
@@ -58,7 +64,7 @@ ciop-simwf
 ```
 Or invoke the Web Processing Service via the Sandbox dashboard or the [Geohazards Thematic Exploitation platform](https://geohazards-tep.eo.esa.int) providing a master/slave product URLs and a project name.
 
-### Community and Documentation
+### <a name="community"></a>Community and Documentation
 
 To learn more and find information go to 
 
@@ -66,16 +72,16 @@ To learn more and find information go to
 * [Doris](http://doris.tudelft.nl/)
 * [Adore Doris](https://code.google.com/p/adore-doris/)
 
-### Authors (alphabetically)
+### <a name="authors"></a>Authors (alphabetically)
 
 * Brito Fabrice
 * D'Andria Fabio
 
-### Questions, bugs, and suggestions
+### <a name="questions"></a>Questions, bugs, and suggestions
 
 Please file any bugs or questions as [issues](https://github.com/geohazards-tep/dcs-doris-l1-coseismic/issues/new) or send in a pull request.
 
-### License
+### <a name="license"></a>License
 
 Copyright 2014 Terradue Srl
 
