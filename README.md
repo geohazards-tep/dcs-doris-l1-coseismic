@@ -6,7 +6,11 @@ Doris is a standalone program that can perform most common steps of the interfer
 
 ADORE stands for [Automated DORIS Environment](https://code.google.com/p/adore-doris/). It is development started at the University of Miami Geodesy Group, to help researchers generate interferograms with ease. Just like DORIS it is an open source project and it comes with the same license. ADORE tries to provide a streamlined user interface for generating interferograms with DORIS and has some additional features for displaying and exporting the results, and time series analysis. 
 
-### Getting Started 
+## Table of Contents
+ 
+* [Getting Started](#getting-started)
+
+### <a name="getting-started"></a>Getting Started 
 
 To run this application you will need a Developer Cloud Sandbox, that can be either requested from the ESA [Research & Service Support Portal](http://eogrid.esrin.esa.int/cloudtoolbox/) for ESA G-POD related projects and ESA registered user accounts, or directly from [Terradue's Portal](http://www.terradue.com/partners), provided user registration approval. 
 
