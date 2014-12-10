@@ -2,7 +2,7 @@
 
 The Delft Institute of Earth Observation and Space Systems of Delft University of Technology has developed an Interferometric Synthetic Aperture Radar (InSAR) processor named [Doris](http://doris.tudelft.nl/) (Delft object-oriented radar interferometric software)
 
-Doris is a standalone program that can perform most common steps of the interferometric radar processing in a modular set up. Doris handles SLC (Single Look Complex) data to generate interferometric products, and can be used to georeference unwrapped products. For an example, see the DEM of Las Vegas, created from ENVISAT data. As phase unwrapper, the external SNAPHU software is recommended (follow the link below to download, and install separately).
+Doris is a standalone program that can perform most common steps of the interferometric radar processing in a modular set up. Doris handles SLC (Single Look Complex) data to generate interferometric products, and can be used to georeference unwrapped products.
 
 ADORE stands for [Automated DORIS Environment](https://code.google.com/p/adore-doris/). It is development started at the University of Miami Geodesy Group, to help researchers generate interferograms with ease. Just like DORIS it is an open source project and it comes with the same license. ADORE tries to provide a streamlined user interface for generating interferograms with DORIS and has some additional features for displaying and exporting the results, and time series analysis. 
 
