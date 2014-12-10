@@ -18,11 +18,11 @@
     <node id="node_adore">
       <job id="adore" />
       <sources>
-        <source scope="runtime" id="adore_slave" title="ASAR slave url" abstract="Define the slave ASAR product to use with ADORE" refid="string:list">http://eo-virtual-archive4.esa.int/search/ASA_IMS_1P/ASA_IMS_1PNUPA20030916_195755_000000162020_00014_08084_3381.N1/rdf</source>
+        <source scope="runtime" id="adore_slave" title="ASAR slave url" abstract="Define the slave ASAR product to use with ADORE" refid="string:list">http://eo-virtual-archive4.esa.int/search/ASA_IMS_1P/ASA_IMS_1PNPDE20090412_092427_000000162078_00079_37207_1530.N1/rdf</source>
       </sources>
       <parameters>
         <parameter id="adore_project">LAquila</parameter>
-        <parameter id="adore_master">http://eo-virtual-archive4.esa.int/search/ASA_IMS_1P/ASA_IMS_1PNUPA20030708_195749_000000162018_00014_07082_3370.N1/rdf</parameter>
+        <parameter id="adore_master">http://eo-virtual-archive4.esa.int/search/ASA_IMS_1P/ASA_IMS_1PNUPA20090201_092428_000000162076_00079_36205_2699.N1/rdf</parameter>
       </parameters>
     </node>
   </workflow>
