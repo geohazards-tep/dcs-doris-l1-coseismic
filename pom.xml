@@ -10,9 +10,9 @@
 	<version>0.1</version>
 
 	<scm>
-		<connection>scm:git:git@github.com:Terradue/dcs-doris-l1-coseismic.git</connection>
-		<developerConnection>scm:git:git@github.com:Terradue/dcs-doris-l1-coseismic.git</developerConnection>
-		<url>https://github.com/Terradue/dcs-doris-l1-coseismic</url>
+		<connection>scm:git:git@github.com:geohazards-tep/dcs-doris-l1-coseismic.git</connection>
+		<developerConnection>scm:git:git@github.com:geohazards-tep/dcs-doris-l1-coseismic.git</developerConnection>
+		<url>https://github.com/geohazards-tep/dcs-doris-l1-coseismic</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -119,6 +119,7 @@
 					</provides>
 					<requires>
 						<require>adore-t2</require>
+						<require>snaphu</require>
 					</requires>
 					<needarch>true</needarch>
 				</configuration>
