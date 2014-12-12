@@ -57,7 +57,7 @@ cd ${UUIDTMP}/data/
 
 # copies the master
 ciop-log "INFO" "downloading master [${MASTER}]"
-MASTER=`ciop-copy -f -O ${UUIDTMP}/data/master ${MASTER}`
+MASTER=`opensearch-client "${MASTER}" enclosure | tail -n 1 | ciop-copy -f -O ${UUIDTMP}/data/master -`
 res=$?
 [ $res -ne 0 ] && exit $ERR_CURL
 
@@ -71,7 +71,7 @@ SLAVE="`cat`"
 [ "`echo "${SLAVE}" | wc -l`" != "1" ] && exit $ERR_CARDINALITY 
 
 ciop-log "INFO" "retrieving slave [${SLAVE}]"
-SLAVE=`ciop-copy -f -O /tmp/ ${SLAVE}`
+SLAVE=`opensearch-client "${SLAVE}" enclosure | tail -n1 | ciop-copy -f -O /tmp/ -`
 res=$?
 [ $res -ne 0 ] && exit $ERR_CURL
 
